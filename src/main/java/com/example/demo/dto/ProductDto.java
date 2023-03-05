@@ -1,8 +1,14 @@
 package com.example.demo.dto;
 
-import javax.persistence.Id;
+import lombok.Data;
 
+import javax.persistence.Id;
+@Data
 public class ProductDto {
+
+    int productId;
+    String productName;
+    int productQuantity ;
     @Override
     public String toString() {
         return "ProductDto{" +
@@ -12,34 +18,6 @@ public class ProductDto {
                 '}';
     }
 
-    int productId;
-    String productName;
-
-    int productQuantity;
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getProductQuantity() {
-        return productQuantity;
-    }
-
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
-    }
 
 
 

@@ -40,10 +40,17 @@ public class ProductService {
      * @param product
      */
     public String addProduct (Product product){
-        product.setProductDate(LocalDate.now());
-        if (isExist(product.getProductName())){
-            return "Le produit existe déjà.";
 
+        if (isExist(product.getProductName())){
+            product.setProductQuantity(product.getProductQuantity()+1);
+            //product.setProductQuantity(product.getProductQuantity(++)); me mettait en erreur
+
+            return "Quantité modifiée.";
+
+        }
+        product.setProductDate(LocalDate.now());
+        if (product.getProductQuantity()<1){
+            product.setProductQuantity(1);
         }
         productRepository.save(product);
         return "Produit ajouté";
