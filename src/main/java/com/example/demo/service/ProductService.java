@@ -20,10 +20,9 @@ public class ProductService {
     ProductMapper productMapper;
 
     /**
-     *
      * @return
      */
-    public List<ProductDto> allProduct (){
+    public List<ProductDto> allProduct() {
         List<ProductDto> listProductDto = new ArrayList<>();
         productRepository.findAll().stream()
                 .forEach(p -> {
@@ -36,27 +35,29 @@ public class ProductService {
     }
 
     /**
-     *
      * @param product
      */
-    public String addProduct (Product product){
+    public String addProduct(Product product) {
 
-        if (isExist(product.getProductName())){
-            product.setProductQuantity(product.getProductQuantity()+1);
-            //product.setProductQuantity(product.getProductQuantity(++)); me mettait en erreur
+        if (isExist(product.getProductName()) != null) {
+
+            product.setProductQuantity(product.getProductQuantity() + 1);
+
 
             return "Quantité modifiée.";
 
         }
         product.setProductDate(LocalDate.now());
-        if (product.getProductQuantity()<1){
+        if (product.getProductQuantity() < 1) {
             product.setProductQuantity(1);
         }
         productRepository.save(product);
         return "Produit ajouté";
     }
-    private boolean isExist (String productName){
 
-        return productRepository.findByName(productName) != null?true:false;
+    private String isExist(String productName) {
+
+        return productRepository.findByName(productName) == null ? null : productRepository.findByName(productName);
     }
 }
+
