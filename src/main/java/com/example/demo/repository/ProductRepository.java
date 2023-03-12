@@ -8,4 +8,6 @@ import org.springframework.data.repository.query.Param;
 public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query(value = "SELECT * FROM t_product p WHERE p.product_name = :productName", nativeQuery = true)
     String findByName(@Param("productName") String productName);
+    @Query(value = "SELECT * FROM t_product p WHERE p.product_name = :productName", nativeQuery = true)
+    Product findProductByName(@Param("productName") String productName);
 }

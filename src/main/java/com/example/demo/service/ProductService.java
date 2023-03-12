@@ -57,9 +57,13 @@ public class ProductService {
         return "Produit ajouté";
     }
 
-    private Optional<String> isExist(String productName) {
+    public Optional<String> isExist(String productName) {
 
         return Optional.ofNullable(productRepository.findByName(productName));
+    }
+    public Product getProduct(String productName){
+        return productRepository.findProductByName(productName);
+
     }
 }
 

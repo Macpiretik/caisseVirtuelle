@@ -15,6 +15,9 @@ public class Product {
     String productName;
     LocalDate productDate;
     int productQuantity;
+    @ManyToOne
+            @JoinColumn(name = "panierId", nullable = false)
+    Panier panier;
 
 
 

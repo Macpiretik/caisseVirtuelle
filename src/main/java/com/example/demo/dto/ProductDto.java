@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import com.example.demo.entity.Panier;
 import lombok.Data;
 
 import javax.persistence.Id;
@@ -9,14 +10,21 @@ public class ProductDto {
     int productId;
     String productName;
     int productQuantity ;
+    Long panierId;
+
     @Override
     public String toString() {
         return "ProductDto{" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
-                ", ProductQuantity='" +productQuantity +
+                ", productQuantity=" + productQuantity +
+                ", panier=" + panierId +
                 '}';
     }
+
+
+
+
 
 
 
