@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -38,8 +39,9 @@ public class ProductService {
      * @param product
      */
     public String addProduct(Product product) {
+        Optional<String> existingProduct = isExist(product.getProductName());
 
-        if (isExist(product.getProductName()) != null) {
+        if (existingProduct.isPresent()) {
 
             product.setProductQuantity(product.getProductQuantity() + 1);
 
@@ -55,9 +57,9 @@ public class ProductService {
         return "Produit ajouté";
     }
 
-    private String isExist(String productName) {
+    private Optional<String> isExist(String productName) {
 
-        return productRepository.findByName(productName) == null ? null : productRepository.findByName(productName);
+        return Optional.ofNullable(productRepository.findByName(productName));
     }
 }
 
